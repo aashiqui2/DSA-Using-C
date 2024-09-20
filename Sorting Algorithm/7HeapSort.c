@@ -5,7 +5,6 @@ void swap(int* a, int* b) {
     *b = temp;
 }
 
-// Function to heapify a subtree rooted with node i
 void heapify(int arr[], int n, int i) {
     int largest = i;      // Initialize largest as root
     int left = 2 * i + 1; // Left child index
@@ -28,7 +27,7 @@ void heapify(int arr[], int n, int i) {
     }
 }
 
-// Function to perform heap sort
+
 void heapSort(int arr[], int n) {
     // Build max heap (rearrange the array)
     for (int i = n / 2 - 1; i >= 0; i--)
@@ -51,7 +50,6 @@ void printArray(int arr[], int n) {
     printf("\n");
 }
 
-// Main function to test heap sort
 int main() {
     int arr[] = {12, 11, 13, 5, 6, 7};
     int n = sizeof(arr) / sizeof(arr[0]);

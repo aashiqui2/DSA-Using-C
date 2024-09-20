@@ -9,6 +9,7 @@ int getIthBit(int n, int pos)
 {
     int mask = (1 << pos);
     int bitval = n & mask;
+    printf("%d ", bitval);
     if (bitval)
     {
         return 1;
@@ -55,7 +56,7 @@ int count_one(int n)
     }
     return count;
 }
-int convertToBinary(int n)
+/* int convertToBinary(int n)
 {
     int ans = 0;
     int temp = 1;
@@ -67,6 +68,26 @@ int convertToBinary(int n)
         n = n >> 1;
     }
     return ans;
+} */
+
+void convertToBinary(int n)
+{
+    // unsigned int mask = 1 << (sizeof(n) * 8 - 1);//for 32 bit values
+    unsigned int mask = 1 << 7;// for 8 bit values // 0 to 4,294,967,295
+    // for (int i = 0; i < sizeof(n) * 8; i++)
+    for (int i = 0; i <8; i++)
+    {
+        if (n & mask)
+        {
+            printf("1");
+        }
+        else
+        {
+            printf("0");
+        }
+        mask >>= 1;
+    }
+    printf("\n");
 }
 // O(n)
 int Power(int base, int power)
@@ -139,14 +160,15 @@ int main()
     int n = 13;
     // int n = 31;
 
-    // printf("%d",setIthBit(n, 2));
+    // printf("%d",setIthBit(n, 1));
     // printf("%d", getIthBit(n,1));
-    // printf("%d", clearIthBit(n,0));
-    // printf("%d",clearLastIBits(n,3));
-    // printf("%d", updateIthBit(n, 2, 2));
-    // printf("%d",clearBItInRange(n,1,3));
+    // printf("%d", clearIthBit(n,2));
+    // printf("%d",clearLastIBits(n,2));
+    // printf("%d", updateIthBit(n, 1, 1));
+    // printf("%d",clearBItInRange(n,0,3));
     // printf("%d",count_one(n));
-    // printf("%d",convertToBinary(5));
+    // printf("%d", convertToBinary(7));
+    // convertToBinary(13);
     //! brute force approach
     // printf("%d", Power(2, 5));
     // printf("%d",fastExpo(2,5));
@@ -165,14 +187,14 @@ int main()
     //     printf("It is not a power of Two");
     // }
 
-    if (isPowerOfTwo(4))
-    {
-        printf("It is a power of Two");
-    }
-    else
-    {
-        printf("It is not a power of Two");
-    }
+    // if (isPowerOfTwo(4))
+    // {
+    //     printf("It is a power of Two");
+    // }
+    // else
+    // {
+    //     printf("It is not a power of Two");
+    // }
 
     return 0;
 }

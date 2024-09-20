@@ -1,40 +1,36 @@
 #include <stdio.h>
 
-int isSubsetSum(int set[], int n, int target_sum) {
-    int total_subsets = 1 << n;  // 2^n subsets (using bit manipulation)
+void findSubset(int set[], int n, int sum) {
+    int totalSubsets = 1 << n; // 2^n subsets
 
-    // Loop through all possible subsets
-    for (int subset_mask = 0; subset_mask < total_subsets; subset_mask++) {
-        int current_sum = 0;
-
-        // Check each bit of the subset mask
-        for (int i = 0; i < n; i++) {
-            // If the i-th bit is set in subset_mask, include set[i] in the subset
-            if (subset_mask & (1 << i)) {
-                current_sum += set[i];
+    for (int i = 0; i < totalSubsets; i++) {
+        int currentSum = 0;
+        printf("Subset: ");
+        
+        for (int j = 0; j < n; j++) {
+            // Check if the j-th element is included in the subset
+            if (i & (1 << j)) {
+                currentSum += set[j];
+                printf("%d ", set[j]); // Print the included element
             }
         }
 
-        // If the sum of this subset is equal to the target sum, return true
-        if (current_sum == target_sum) {
-            return 1;
+        // Check if the current subset's sum matches the desired sum
+        if (currentSum == sum) {
+            printf("=> Found a subset with sum %d\n", sum);
+            return; // Exit after finding the first valid subset
         }
+
+        printf("\n"); // Print newline for clarity
     }
 
-    // If no subset has the sum equal to the target sum, return false
-    return 0;
+    printf("No subset with given sum\n");
 }
 
 int main() {
-    int set[] = {3, 34, 4, 12, 5, 2};  
-    int target_sum = 9;                // Target sum
-    int n = sizeof(set) / sizeof(set[0]);  
-
-    if (isSubsetSum(set, n, target_sum)) {
-        printf("Found a subset with the given sum.\n");
-    } else {
-        printf("No subset with the given sum.\n");
-    }
-
+    int set[] = {3, 34, 4, 12, 5, 2};
+    int sum = 9;
+    int n = sizeof(set) / sizeof(set[0]);
+    findSubset(set, n, sum);
     return 0;
 }
